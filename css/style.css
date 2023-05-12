@@ -1,0 +1,459 @@
+/* definiendo las variables Custom properties */
+:root{ 
+    /* Paleta de colores */
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #FFC107;
+    --secundario: #0097a7;
+    --gris: #757575;
+    --grisClaro: #dfe9f3;
+}
+
+
+
+/* Dando tamaños de fuente recomendados en las tags: html y body */
+html{
+    font-size: 62.5%;
+}
+body{
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+}
+   
+/* Aplicacion box sizing a todos los elementos */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+
+/* Este enfoque es muy recomendado DESIGN SISTEMS, si vemos nuestro css, estamos yendo desde lo mas general y se va escribiendo codigo mas especifico mas abajo. 
+En este caso se definen reglas para la tipografia en los headings
+*/
+h1{
+    font-size: 3.8rem;    
+    text-align: center;
+}
+h2{
+    font-size: 2.8rem;
+    text-align: center;
+}
+h3{
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+
+
+
+/* definiendo estilos en el header */
+
+
+/* este selector ya no es necesario ya que definimos los headigs en el sistema de diseños
+.titulo{
+    text-align: center;
+    font-size: 3.8rem;    
+}    */
+.titulo span{
+    font-size: 2rem;
+    /* color: rgba(47, 99, 194, 0.281);b  */
+    color: #0096a760;
+}
+
+
+
+
+
+
+/* MENU DE NAVEGACION */
+
+
+
+/* opcional ponerlo, debido a que .nav-bg (class de div) esta tambien definiendo el background del bloque */
+.navegacion-principal{
+    background-color: var(--secundario);
+}
+
+
+
+/* este tipo de selector es muy generico, CENTRA EL CONTENIDO, de manera que si queremos que alguna parte de nuestra pagina web se centre, solo agregamos esta clase a la etiqueta correspondiente, en este caso lo usaremos en el menu de navegacion (nav)
+
+Se cambio el 'width: 120rem;' a 'max-width: 120rem;' ya que width forza a que (en este caso) la barra de navegacion cumpla con esos 120rem, provocando un desbordamiento en dispositivos que no tienen esos 120rem, como remplazo tenemos 'max-width', que esto forza solamente a que no se pase de 120rem, pero puede tomar cualquier valor menor a este, adaptandose al dispositivo.
+
+max-width: establece el ancho máximo de un elemento
+*/
+.contenedor{
+    /* width: 120rem; */
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+
+
+/* para hacer que el background-color se vea tambien en los costados necesitaremos otra caja, encerraremos el nav en un div, y al div le daremos un background-color igual que el nav, rellenando asi del mismo color los espacios*/
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+
+
+/* color a la fuente y quitando linea de hipervinculo(deroration)*/
+.navegacion-principal a{
+    color: var(--blanco);
+    text-decoration: none;
+}
+
+
+/* distribuir los enlaces con flex
+    cambio de rows a column, para celulares y demas dispositivos pequeños, (ver media queries en .navegacion-principal para adaptacion para tablets y escritorios.)
+*/  
+.navegacion-principal{
+    /* padding: 1rem; */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* agrandando la fuente, engrosandola y engrosando el background-color en los a(hipervinculos), ya que al aplicar el hover, como este esta dentro de los a, debe de llegar hasta ese tope, de lo contrario si pusieramos el padding en el nav(.navegacion-principal), el hover no llegaria hasta el tope del background, ya que el hover se esta aplicando solo a los 'a' */
+.navegacion-principal a{
+    /* este display block y text-align sirven para tener los enlaces uno abajo del otro y centrados, cuando la pantalla es menor a 768px*/
+    display: block;
+    text-align: center;
+
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+
+}
+
+
+/* implementando pseudo-clases, para implementar el background-color cada vez que se pase el mouse en los enlaces */
+.navegacion-principal a:hover{
+    background-color: var(--primario);   
+    /* padding: 1rem;*/
+    color: var(--oscuro);
+}   
+
+
+/* Responsive web design, en la barra de navegacion  
+*/
+
+/* Definiendo la adaptacion para tablets y escritorios */
+@media (min-width: 768px) {
+    
+   .navegacion-principal{
+    flex-direction: row;
+    justify-content: space-evenly;
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Diseño en section */
+
+
+
+/* definiendo estilos en la caja section */
+.section{
+    background-image: url(../assets/img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    /* padding: 2rem; */
+
+    position: relative;
+
+    margin-bottom: 2rem;
+}
+
+
+/* definiendo estilos en el contenido del section */
+.section-contenido{
+    position: absolute;
+
+    background-color: rgb(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+
+    /* esto se puede usar sustituyendo width y height 100% para ocupar todo el espacio
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+
+
+    /* Estas siguientes lineas se pueden usar en todos nuestros proyectos para alinear contenido horizontal y verticalmente*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* cambiando color a el h2 y p */
+.section-contenido h2,
+.section-contenido p
+{
+   color: var(--blanco);
+}
+
+.ubicacion{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2rem ;
+}
+    
+/* Generando un diseño del boton, este puede ser un codigo reutilizable para otros botones que pondremos mas adelante */
+.boton{
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 0.5rem;
+
+    width: 90%;
+    text-align: center;
+    border: none;
+
+}
+.boton:hover{
+    cursor: pointer;
+}
+/*boton responsive para ipads,laps,escritorios,etc */
+@media (min-width: 768px) {
+    /* Al poner el valor auto, se recetea el width */
+    .boton{
+        width: auto;
+    }
+}
+/* añadiendo hover */
+.boton:hover{
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Degradado en el fondo  */
+
+/* sintaxis basica de linear gradient */
+body{
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main style */
+
+.sombra{
+
+    /* prefijos para navegadores */
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.55);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.55);
+
+
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.55);
+    
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+
+@media (min-width: 768px) {
+   
+    .servicios{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        column-gap: 2rem;
+    }
+}
+
+.icons{
+    background-color: var(--primario);
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.servicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+}
+.servicio h3{
+    color: var(--secundario);
+    font-weight: 400;
+}
+.servicio p{
+    line-height: 2;
+}
+
+
+
+
+
+
+
+
+
+/* seccion formulario */
+
+.formulario{
+    background-color: var(--gris);
+    
+    width: min(60rem, 100%); /* este width nos sirve para que le especifiquemos que utilize el valor mas pequeño, es decir, pracricamente se hace la siguiente pregunta ¿que es mas pequeño?
+
+    si nuestro ancho de nuestro dispositivo es menor a 60rem, entonces utiliza 100%, si nuestro dispositivo es mayor a 60rem, usa los 60rem, con esto nos ahorramos un mq*/
+    margin: 0 auto;
+    padding: 2rem; 
+    border-radius: 1rem;
+}
+.formulario fieldset{
+    border: none;
+}
+.formulario legend{
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;margin-bottom: 2rem;
+    color: var(--primario);
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+.campo{
+    margin-bottom: 1rem;
+}
+.campo label{
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+.input-text{
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+.enviar .boton{
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .enviar .boton{
+        width: auto;
+    }
+}
+
+
+
+
+
+
+/* es recomendable utilizar una seccion que se llame utilidades, en esta podemos poner selectores como
+    w-100%
+    flex
+    alineacion
+*/
+
+/* utilidades */
+.flex{
+    display: flex;
+}
+.w-100{
+    width: 100%;
+}
+.alinear-derecha{
+    justify-content: flex-end;
+}
+
+
+.campo textarea{
+    height: 20rem;
+}
+@media (min-width: 768px) {
+    
+    .contenedor-campos{
+        display: grid;
+        /* esta propiedad (grid-template) define las areas de nuestras columnas o filas*/
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+        grid-template-rows: auto auto 20rem auto;
+    
+    }
+
+    /* nth-child me selecciona la clase que tenga ese numero segun el orden en html */
+    .campo:nth-child(3),
+    .campo:nth-child(4){
+        /* esta propiedad (grid-colum o grid-row) sirve para posicionar elementos dentro de grid */
+        grid-column: 1 / 3;
+    }
+    
+}
+.enviar{
+    margin-top: 3rem;
+}
+
+
+
+
+
+
+
+
+/* footer */
+
+.footer{
+    text-align: center;
+}
